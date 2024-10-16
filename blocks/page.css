@@ -1,0 +1,23 @@
+.page {
+    background: #FCF5E5;
+    min-height: 100vh;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.page__section {
+    max-width: 1280px;
+    margin: 0 auto;
+    border-bottom: 1px rgba(33, 33, 33, .4) solid;
+    padding-bottom: 40px;
+}
+
+
+@media screen and (max-width: 627px) {
+    .page__section {
+        max-width: 288px;
+    }
+}
+
+/* This exists the make my bottom border shrink with the 
+page as it switches to mobile view. If there's a better way 
+to do that, please correct me. */
