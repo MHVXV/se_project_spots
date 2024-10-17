@@ -44,8 +44,6 @@
     -webkit-box-orient: vertical;
 }
 
-
-
 .profile__edit-btn {
     display: flex;
     margin-top: auto;
@@ -56,15 +54,6 @@
     font-size: 16px;
     line-height: 16px;
 }
-
-/*.profile__edit-btn::before {
-    content: url(../images/pencil.svg);
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/pencil.svg);
-    padding-right: 8px;
-    opacity: 70%;
-}*/
 
 .profile__edit-btn::before {
     content: '';
