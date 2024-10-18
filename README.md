@@ -22,4 +22,10 @@ The purpose of this project is to ensure all elements are displayed properly on 
 
 This webpage is deployed to GitHub Pages.
 
-- [Deployment link ](https://MHVXV.github.io/se_project_spots_template)
+- [Deployment link ](https://MHVXV.github.io/se_project_spots)
+
+## Project video
+
+Here is a video describing my project
+
+- [Video link ](https://drive.google.com/file/d/13FDmr48qFwMGWR1CMT1BvuuFDDLHC8sD/view?usp=drive_link)
