@@ -43,6 +43,14 @@
     transition: opacity .6s ease;
 }
 
+.card__like-btn_liked {
+    background-image: url("../images/loved.svg");
+    opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+    background-image: url("../images/loved-hover.svg");
+}
 
 @media screen and (max-width:627px) {
     .card__image {
