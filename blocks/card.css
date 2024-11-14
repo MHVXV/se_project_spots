@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .card__title {
@@ -29,7 +30,7 @@
 }
 
 .card__like-btn {
-    background-image: url(../images/like.svg);
+    background-image: url("../images/like.svg");
     width: 23px;
     height: 20px;
     border: none;
@@ -50,6 +51,22 @@
 
 .card__like-btn_liked:hover {
     background-image: url("../images/loved-hover.svg");
+}
+
+.card__delete-btn {
+    position: absolute;
+    top: -413px;
+    left: 371px;
+    background-image: url(../images/delete.svg);
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card__delete-btn:hover {
+    background-image: url("../images/delete-hover.svg");
 }
 
 @media screen and (max-width:627px) {
