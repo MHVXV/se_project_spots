@@ -40,6 +40,7 @@ const editModalCloseButton = editModal.querySelector(".modal__close-btn");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
 
+const addCardForm = document.forms["card-form"]
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form")
 const cardModalCloseButton = cardModal.querySelector(".modal__close-btn");
@@ -146,3 +147,29 @@ initialCards.forEach((item) => {
     const cardEl = getCardElement(item);
     cardsList.append(cardEl);
 });
+
+
+// could not get this to work
+//const closeButtons = document.querySelectorAll('.modal__close');
+
+//closeButtons.forEach((button) => {
+  // Find the closest popup only once
+  //const popup = button.closest('.modal');
+  // Set the listener
+  //button.addEventListener('click', () => closePopup(popup));
+//});
+
+
+
+//OR THIS
+
+
+
+// The function accepts a card object and a method of adding to the section
+// The method is initially `prepend`, but you can pass `append` 
+//function renderCard(item, method = "prepend") {
+  
+  //  const cardElement = getCardElement(item);
+    // Add the card into the section using the method
+   // cardsList[ method ](cardElement);
+ // }
