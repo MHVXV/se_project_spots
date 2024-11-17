@@ -1,5 +1,6 @@
 .card {
     max-width: 413px;
+    position: relative;
 }
 
 .card__image {
@@ -15,7 +16,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 
 .card__title {
@@ -47,6 +47,7 @@
 .card__like-btn_liked {
     background-image: url("../images/loved.svg");
     opacity: 1;
+    background-repeat: no-repeat;
 }
 
 .card__like-btn_liked:hover {
@@ -55,7 +56,7 @@
 
 .card__delete-btn {
     position: absolute;
-    top: -413px;
+    top: 10px;
     left: 371px;
     background-image: url(../images/delete.svg);
     width: 32px;
