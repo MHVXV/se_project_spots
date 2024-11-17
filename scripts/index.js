@@ -101,6 +101,7 @@ function handleEditFormSubmit(evt) {
     profileName.textContent = editModalNameInput.value;
     profileDescription.textContent = editModalDescriptionInput.value;
     closeModal(editModal);
+  
 }
 
 function handleAddCardSubmit(evt) {
@@ -110,7 +111,9 @@ function handleAddCardSubmit(evt) {
     const inputValues = { name: cardNameInput.value, link: cardLinkInput.value};
     const cardEl = getCardElement(inputValues);
     cardsList.prepend(cardEl);
-    closeModal(cardModal); //is this right?
+    closeModal(cardModal); 
+
+    cardForm.reset();  //Fixed on reviewer's recommendation
 };
 
 profileEditButton.addEventListener("click", () => {
