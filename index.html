@@ -16,7 +16,7 @@
             <img src="./images/logo.svg" alt="Spot logo" class="header__logo">
         </header>
         <main class="content">
-            <section class="profile page__section" id="profile-form">
+            <section class="profile page__section">
                 <img src="./images/avatar.jpg" alt="Current user's avatar" class="profile__avatar" />
                 <div class="profile__column">
                     <h1 class="profile__name">Bessie Coleman</h1>
@@ -29,7 +29,7 @@
                 <img src="./images/plus.svg" alt ="add button" class="profile__add-btn-img"/>New Post
             </button>
             </section>
-            <section class="cards page__section" id="card-form">
+            <section class="cards page__section">
                 <ul class="cards__list">
                 <template id="card-template">
                 <li class="card">
@@ -104,10 +104,10 @@
             </div>
         </div>
     </div>
-   <div class="modal modal__opened" id="preview-modal">
+   <div class="modal" id="preview-modal">
         <div class="modal__content modal__content_type_preview">
             <button 
-            class="modal__close modal__close_type_preview"
+            class="modal__close-btn modal__close-btn_type_preview"
             type="button"
             ></button>
             <img class="modal__image" 
