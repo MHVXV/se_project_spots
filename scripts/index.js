@@ -123,20 +123,16 @@ profileEditButton.addEventListener("click", () => {
     openModal(editModal);
 });
 
-editModalCloseButton.addEventListener("click", () => {
-    closeModal(editModal);
+// updated as recommended from latest review
+const closeButtons = document.querySelectorAll('.modal__close-btn');
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.modal');
+  button.addEventListener('click', () => closeModal(popup));
 });
 
 profileAddImgButton.addEventListener("click", () => {
     openModal(cardModal);
-});
-
-cardModalCloseButton.addEventListener("click", () => {
-    closeModal(cardModal);
-});
-
-previewModalCloseButton.addEventListener("click", () => {
-    closeModal(previewModal);
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit); 
@@ -149,20 +145,7 @@ initialCards.forEach((item) => {
 });
 
 
-// could not get this to work
-//const closeButtons = document.querySelectorAll('.modal__close');
-
-//closeButtons.forEach((button) => {
-  // Find the closest popup only once
-  //const popup = button.closest('.modal');
-  // Set the listener
-  //button.addEventListener('click', () => closePopup(popup));
-//});
-
-
-
 //OR THIS
-
 
 
 // The function accepts a card object and a method of adding to the section
