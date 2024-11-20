@@ -71,7 +71,7 @@
 
 .modal__close-btn {
     position: absolute;
-    top: 32px;
+    top: 30px;
     right: 50px;
     height: 40px;
     width: 40px;
@@ -166,6 +166,11 @@
     }
 
     .modal__close-btn {
+        top: 12px;
+        right: 12px;
+    }
+
+    .modal__close-btn_type_preview {
         top: -44px;
         left: 248px;
     }
