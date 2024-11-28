@@ -120,10 +120,10 @@ function handleAddCardSubmit(evt) {
 profileEditButton.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
+    resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput]);
     openModal(editModal);
 });
 
-// updated as recommended from latest review
 const closeButtons = document.querySelectorAll('.modal__close-btn');
 
 closeButtons.forEach((button) => {
@@ -143,16 +143,3 @@ initialCards.forEach((item) => {
     const cardEl = getCardElement(item);
     cardsList.append(cardEl);
 });
-
-
-//OR THIS
-
-
-// The function accepts a card object and a method of adding to the section
-// The method is initially `prepend`, but you can pass `append` 
-//function renderCard(item, method = "prepend") {
-  
-  //  const cardElement = getCardElement(item);
-    // Add the card into the section using the method
-   // cardsList[ method ](cardElement);
- // }
