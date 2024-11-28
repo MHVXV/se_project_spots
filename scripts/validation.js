@@ -1,6 +1,6 @@
 const setEventListeners = (formEl) => {
     const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
-    const buttonEl = formEl.querySelector(".modal__button");
+    const buttonEl = formEl.querySelector(".modal__submit-btn");
 
     toggleButtonState(inputList, buttonEl);
 
@@ -39,18 +39,21 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonEl) => {
-
-// THIS PORTION OF CODE IS CAUSING ME ISSUES. 
-// I GOT IT FROM SPRINT 6, VIDEO 5 "toggleButtonState", minute 9:35 link = https://vimeo.com/964618827?share=copy
-
-   /*if (hasInvalidInput(inputList)) {
-        buttonEl.disabled = true; 
+   if (hasInvalidInput(inputList)) {
+        disableButton(buttonEl);
   } else {
     buttonEl.disabled = false;
-  }*/
+    // - TODO remove the disabled class
+  }
 };
 
-const resetValidation = (formEl, inputEl, inputList) => {
+const disableButton = (buttonEl) => {
+    buttonEl.disabled = true; 
+    // - TODO - Add a modifier class to the buttonEl to make it grey
+    // Don't forget the CSS
+}
+
+const resetValidation = (formEl, inputList) => {
     inputList?.forEach((input) => {
         hideInputError(formEl, input);
     });
