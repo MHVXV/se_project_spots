@@ -33,11 +33,11 @@ const hideInputError = (formEl, inputEl, settings) => {
     inputEl.classList.remove(settings.inputErrorClass);
 };
 
-const checkInputValidity = (formEl, inputEl) => {
+const checkInputValidity = (formEl, inputEl, settings) => {
     if (!inputEl.validity.valid) {
-      showInputError(formEl, inputEl, inputEl.validationMessage);
+      showInputError(formEl, inputEl, inputEl.validationMessage, settings);
     } else {
-      hideInputError(formEl, inputEl);
+      hideInputError(formEl, inputEl, settings);
     }
   };
 
@@ -62,13 +62,13 @@ const disableButton = (buttonEl) => {
     // Don't forget the CSS
 }
 
-const resetValidation = (formEl, inputList) => {
+const resetValidation = (formEl, inputList, settings) => {
     inputList?.forEach((input) => {
-        hideInputError(formEl, input);
+        hideInputError(formEl, input, settings);
     });
 };
 
-const enableValidation = (config) => {
+const enableValidation = (settings) => {
   const formList = document.querySelectorAll(settings.formSelector);
   formList.forEach((formEl) => {
     setEventListeners(formEl, settings);
