@@ -123,7 +123,7 @@ function handleAddCardSubmit(evt) {
 profileEditButton.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
-    resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput]);
+    resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput], settings);
     openModal(editModal);
 });
 
@@ -146,3 +146,9 @@ initialCards.forEach((item) => {
     const cardEl = getCardElement(item);
     cardsList.append(cardEl);
 });
+
+document.body.addEventListener('click', (event) => {
+    if (!event.target.closest('.modal__form')) {
+      closeModal();
+    }
+  });

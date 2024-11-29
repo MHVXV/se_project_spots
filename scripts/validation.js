@@ -2,9 +2,9 @@ const settings = {
     formSelector: ".modal__form", //cardForm is different than the video
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__submit-btn", //different than the video
-    inactiveButtonClass: ".modal__submit-btn_disabled", //different than the video; might need to add to modal.css
-    inputErrorClass: ".modal__input_type_error",
-    errorClass: ".modal__error_visible", //might need to add to modal.css
+    inactiveButtonClass: "modal__submit-btn_disabled", //different than the video; might need to add to modal.css
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible", //might need to add to modal.css
 };
 
 const setEventListeners = (formEl, settings) => {
@@ -47,19 +47,18 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonEl) => {
+const toggleButtonState = (inputList, buttonEl, settings) => {
    if (hasInvalidInput(inputList)) {
-        disableButton(buttonEl);
+        disableButton(buttonEl, settings);
   } else {
     buttonEl.disabled = false;
-    // - TODO remove the disabled class
+    buttonEl.classList.remove(settings.inactiveButtonClass)
   }
 };
 
-const disableButton = (buttonEl) => {
+const disableButton = (buttonEl, settings) => {
     buttonEl.disabled = true; 
-    // - TODO - Add a modifier class to the buttonEl to make it grey
-    // Don't forget the CSS
+    buttonEl.classList.add(settings.inactiveButtonClass)
 }
 
 const resetValidation = (formEl, inputList, settings) => {
