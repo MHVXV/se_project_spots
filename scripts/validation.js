@@ -1,27 +1,36 @@
-const setEventListeners = (formEl) => {
-    const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
-    const buttonEl = formEl.querySelector(".modal__submit-btn");
+const settings = {
+    formSelector: ".modal__form", //cardForm is different than the video
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__submit-btn", //different than the video
+    inactiveButtonClass: ".modal__submit-btn_disabled", //different than the video; might need to add to modal.css
+    inputErrorClass: ".modal__input_type_error",
+    errorClass: ".modal__error_visible", //might need to add to modal.css
+};
 
-    toggleButtonState(inputList, buttonEl);
+const setEventListeners = (formEl, settings) => {
+    const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
+    const buttonEl = formEl.querySelector(settings.submitButtonSelector);
+
+    toggleButtonState(inputList, buttonEl, settings);
 
     inputList.forEach((inputEl) => {
         inputEl.addEventListener("input", function () {
-            checkInputValidity(formEl, inputEl);
-            toggleButtonState(inputList, buttonEl);
+            checkInputValidity(formEl, inputEl, settings);
+            toggleButtonState(inputList, buttonEl, settings);
         });
     });
 };
 
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, settings) => {
     const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorMsgEl.textContent = errorMsg;
-    inputEl.classList.add("modal__input_type_error");
+    inputEl.classList.add(settings.inputErrorClass);
 };
 
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, settings) => {
     const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorMsgEl.textContent = "";
-    inputEl.classList.remove("modal__input_type_error");
+    inputEl.classList.remove(settings.inputErrorClass);
 };
 
 const checkInputValidity = (formEl, inputEl) => {
@@ -59,11 +68,11 @@ const resetValidation = (formEl, inputList) => {
     });
 };
 
-const enableValidation = () => {
-  const formList = document.querySelectorAll(".modal__form");
+const enableValidation = (config) => {
+  const formList = document.querySelectorAll(settings.formSelector);
   formList.forEach((formEl) => {
-    setEventListeners(formEl);
+    setEventListeners(formEl, settings);
   });
 };
 
-enableValidation();
+enableValidation(settings);

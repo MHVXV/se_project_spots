@@ -1,3 +1,5 @@
+//TODO - pass settings object to validatino functions that are called in this file
+
 const initialCards = [
     {
     name: "Golden Gate bridge",
@@ -115,7 +117,7 @@ function handleAddCardSubmit(evt) {
     disableButton(cardModalSubmitButton);
     closeModal(cardModal); 
 
-    cardForm.reset();  //Fixed on reviewer's recommendation
+    cardForm.reset();
 };
 
 profileEditButton.addEventListener("click", () => {
