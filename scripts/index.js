@@ -91,14 +91,6 @@ previewModalCaptionEl.textContent = data.name;
   return cardElement;
 }
 
-function openModal(modal) {
-    modal.classList.add("modal_opened");
-}
-
-function closeModal(modal) {
-    modal.classList.remove("modal_opened");
-}
-
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editModalNameInput.value;
@@ -147,8 +139,28 @@ initialCards.forEach((item) => {
     cardsList.append(cardEl);
 });
 
-document.body.addEventListener('click', (event) => {
-    if (!event.target.closest('.modal__form')) {
-      closeModal();
+  function closeModal(modal) {
+    modal.classList.remove("modal_opened");
+    document.removeEventListener("keydown", closeModalEsc);
+    modal.removeEventListener("mousedown", closeOverlay);
+  }
+  
+  function closeModalEsc(evt) {
+    if (evt.key === "Escape") {
+      const modalOpened = document.querySelector(".modal_opened");
+      closeModal(modalOpened);
     }
-  });
+  }
+  
+  function closeOverlay(evt) {
+    const modalOpened = document.querySelector(".modal_opened");
+    if (evt.target.classList.contains("modal_opened")) {
+      closeModal(modalOpened);
+    }
+  }
+  
+  function openModal(modal) {
+    modal.classList.add("modal_opened");
+    document.addEventListener("keydown", closeModalEsc);
+    modal.addEventListener("mousedown", closeOverlay);
+  }

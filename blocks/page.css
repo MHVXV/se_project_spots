@@ -9,3 +9,7 @@
     margin: 0 auto;
     padding-bottom: 40px;
 }
+
+:focus {
+    outline: none;
+}
