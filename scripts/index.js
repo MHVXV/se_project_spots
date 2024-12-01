@@ -106,7 +106,7 @@ function handleAddCardSubmit(evt) {
     const inputValues = { name: cardNameInput.value, link: cardLinkInput.value};
     const cardEl = getCardElement(inputValues);
     cardsList.prepend(cardEl);
-    disableButton(cardModalSubmitButton);
+    disableButton(cardModalSubmitButton, {inactiveButtonClass: "modal__submit-btn_disabled"});
     closeModal(cardModal); 
 
     cardForm.reset();

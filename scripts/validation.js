@@ -58,7 +58,7 @@ const toggleButtonState = (inputList, buttonEl, settings) => {
 
 const disableButton = (buttonEl, settings) => {
     buttonEl.disabled = true; 
-    buttonEl.classList.add(settings.inactiveButtonClass)
+    buttonEl.classList.add(settings.inactiveButtonClass);
 }
 
 const resetValidation = (formEl, inputList, settings) => {
