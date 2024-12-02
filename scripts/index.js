@@ -1,5 +1,3 @@
-//TODO - pass settings object to validatino functions that are called in this file
-
 const initialCards = [
     {
     name: "Golden Gate bridge",
@@ -37,14 +35,14 @@ const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
 const editModal = document.querySelector("#profile-edit-modal");
-const editFormElement = editModal.querySelector(".modal__form");
+const profileForm = document.forms["profile-form"];
 const editModalCloseButton = editModal.querySelector(".modal__close-btn");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
 
-const addCardForm = document.forms["card-form"]
+
 const cardModal = document.querySelector("#add-card-modal");
-const cardForm = cardModal.querySelector(".modal__form")
+const cardForm = document.forms["card-form"];
 const cardModalCloseButton = cardModal.querySelector(".modal__close-btn");
 const cardModalSubmitButton = cardModal.querySelector(".modal__submit-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
@@ -78,7 +76,7 @@ cardLikeBtn.addEventListener("click", () => {
 });
 
 cardDeleteBtn.addEventListener("click", () => {
-    cardDeleteBtn.closest(".card").remove();
+     cardElement.remove();
 });
 
 cardImageElement.addEventListener("click", () => {
@@ -106,16 +104,16 @@ function handleAddCardSubmit(evt) {
     const inputValues = { name: cardNameInput.value, link: cardLinkInput.value};
     const cardEl = getCardElement(inputValues);
     cardsList.prepend(cardEl);
-    disableButton(cardModalSubmitButton, {inactiveButtonClass: "modal__submit-btn_disabled"});
+    disableButton(cardModalSubmitButton, settings);
     closeModal(cardModal); 
 
     cardForm.reset();
 };
-
+ 
 profileEditButton.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
-    resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput], settings);
+    resetValidation(profileForm, [editModalNameInput, editModalDescriptionInput], settings);
     openModal(editModal);
 });
 
@@ -130,13 +128,13 @@ profileAddImgButton.addEventListener("click", () => {
     openModal(cardModal);
 });
 
-editFormElement.addEventListener("submit", handleEditFormSubmit); 
+profileForm.addEventListener("submit", handleEditFormSubmit); 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
 
 initialCards.forEach((item) => {
-    const cardEl = getCardElement(item);
-    cardsList.append(cardEl);
+  const cardEl = getCardElement(item);
+  cardsList.append(cardEl);
 });
 
   function closeModal(modal) {
@@ -153,9 +151,8 @@ initialCards.forEach((item) => {
   }
   
   function closeOverlay(evt) {
-    const modalOpened = document.querySelector(".modal_opened");
     if (evt.target.classList.contains("modal_opened")) {
-      closeModal(modalOpened);
+      closeModal(evt.target);
     }
   }
   

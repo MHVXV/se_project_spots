@@ -6,7 +6,7 @@ const settings = {
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible", //might need to add to modal.css
 };
-
+ 
 const setEventListeners = (formEl, settings) => {
     const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
     const buttonEl = formEl.querySelector(settings.submitButtonSelector);
