@@ -1,4 +1,10 @@
-import { enableValidation, settings, resetValidation } from "./validation.js";
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "../scripts/validation.js";
 
 const initialCards = [
   {
@@ -110,7 +116,6 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardEl);
   disableButton(cardModalSubmitButton, settings);
   closeModal(cardModal);
-
   cardForm.reset();
 }
 
