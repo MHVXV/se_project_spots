@@ -5,6 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
+import Api from "../scripts/Api.js";
 
 const initialCards = [
   {
@@ -36,6 +37,21 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "4d56d901-fb31-44ec-9737-2c59f5a75d18",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((initialCards) => {
+  initialCards.forEach((item) => {
+    const cardEl = getCardElement(item);
+    cardsList.append(cardEl);
+  });
+});
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddImgButton = document.querySelector(".profile__add-btn");
@@ -143,11 +159,6 @@ profileAddImgButton.addEventListener("click", () => {
 
 profileForm.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
-
-initialCards.forEach((item) => {
-  const cardEl = getCardElement(item);
-  cardsList.append(cardEl);
-});
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
