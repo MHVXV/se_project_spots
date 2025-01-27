@@ -5,7 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
   {
@@ -46,12 +46,20 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((initialCards) => {
-  initialCards.forEach((item) => {
-    const cardEl = getCardElement(item);
-    cardsList.append(cardEl);
-  });
-});
+// Destructure the second item in the callback of the .then()
+api
+  .getAppInfo()
+  .then(([cards]) => {
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardsList.append(cardEl);
+    });
+
+    // handle the user's information
+    // - set the src of the avatar img
+    // - set the textContent of both the text elements
+  })
+  .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddImgButton = document.querySelector(".profile__add-btn");
@@ -118,9 +126,18 @@ function getCardElement(data) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      // TODO - Use data argument instead of the input values
+      profileName.textContent = editModalNameInput.value;
+      profileDescription.textContent = editModalDescriptionInput.value;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
