@@ -82,6 +82,9 @@ const avatarModalCloseButton = avatarModal.querySelector(".modal__close-btn");
 const avatarModalSubmitButton = avatarModal.querySelector(".modal__submit-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
+// Delete form elements
+const deleteModal = document.querySelector("#delete-modal");
+
 // Card form elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = document.forms["card-form"];
@@ -119,7 +122,7 @@ function getCardElement(data) {
     cardLikeBtn.classList.toggle("card__like-btn_liked");
   });
 
-  cardDeleteBtn.addEventListener("click", () => {
+  cardDeleteBtn.addEventListener("click", handleDeleteCard, () => {
     cardElement.remove();
   });
 
@@ -159,6 +162,24 @@ function handleAddCardSubmit(evt) {
   disableButton(cardModalSubmitButton, settings);
   closeModal(cardModal);
   cardForm.reset();
+}
+
+// TODO - Finish avatar submission handler from video 5
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  console.log(avatarInput.value);
+  api
+    .editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      console.log(data.avatar);
+      // Make this work, set the new avatar element from video 5
+    })
+    .catch(console.error);
+}
+
+function handleDeleteCard(evt) {
+  //evt.target.closest(".card").remove();
+  openModal(deleteModal);
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -205,10 +226,11 @@ function closeOverlay(evt) {
   }
 }
 
-// TODO - select avatar modal button at the top of the page
+// TODO - set up the close button listener from video 5
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 function openModal(modal) {
   modal.classList.add("modal_opened");

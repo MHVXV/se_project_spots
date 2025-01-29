@@ -166,7 +166,7 @@
       </div>
     </div>
 
-    <!-- make everything below here match the figma -->
+    <!-- make everything below here match the figma. from video 5 -->
     <div class="modal" id="avatar-modal">
       <div class="modal__container">
         <button class="modal__close-btn"></button>
@@ -183,13 +183,26 @@
               placeholder="avatar goes here"
               required
             />
-            <!-- in between here -->
+            <!-- in between here from video 5-->
             <span class="modal__error" id="profile-avatar-input-error"
               >Please fill out this field.</span
             >
           </label>
-
           <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Style the CSS based on the figma, from video 6 -->
+    <div class="modal" id="delete-modal">
+      <div class="modal__container">
+        <button class="modal__close-btn"></button>
+        <h2 class="modal__title">
+          Are you sure you want to delete this image?
+        </h2>
+        <form class="modal__form" id="delete-form" novalidate>
+          <button type="submit" class="modal__submit-btn">Delete</button>
+          <button type="button" class="modal__submit-btn">Cancel</button>
         </form>
       </div>
     </div>
