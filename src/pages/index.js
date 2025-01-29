@@ -46,23 +46,24 @@ const api = new Api({
   },
 });
 
-// Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then((response) => {
+    const [cards, userInfo] = response;
     cards.forEach((item) => {
       const cardEl = getCardElement(item);
       cardsList.append(cardEl);
     });
 
-    // handle the user's information
-    // - set the src of the avatar img
-    // - set the textContent of both the text elements
+    document.querySelector(".profile__avatar").src = userInfo.avatar;
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
   })
   .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddImgButton = document.querySelector(".profile__add-btn");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -74,6 +75,14 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
+// Avatar form elements
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector["#edit-avatar-form"];
+const avatarModalCloseButton = avatarModal.querySelector(".modal__close-btn");
+const avatarModalSubmitButton = avatarModal.querySelector(".modal__submit-btn");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+
+// Card form elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = document.forms["card-form"];
 const cardModalCloseButton = cardModal.querySelector(".modal__close-btn");
@@ -132,9 +141,9 @@ function handleEditFormSubmit(evt) {
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      // TODO - Use data argument instead of the input values
-      profileName.textContent = editModalNameInput.value;
-      profileDescription.textContent = editModalDescriptionInput.value;
+      // (DONE) - Use data argument instead of the input values
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error);
@@ -195,6 +204,11 @@ function closeOverlay(evt) {
     closeModal(evt.target);
   }
 }
+
+// TODO - select avatar modal button at the top of the page
+avatarModalBtn.addEventListener("click", () => {
+  openModal(avatarModal);
+});
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
