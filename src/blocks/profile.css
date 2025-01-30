@@ -156,6 +156,11 @@
     content: "";
   }
 
+  /* .profile__pencil-icon {
+    margin-bottom: 12px;
+    z-index: 2;
+  } */
+
   /* TODO - finish mobile avatar button styles */
 
   .profile__avatar {
