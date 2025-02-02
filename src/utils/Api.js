@@ -15,13 +15,6 @@ class Api {
     });
   }
 
-  getAppInfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
-  }
-
-  // TODO - implement POST /cards - video 7
-  // do something similar to editUserInfo
-
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
@@ -33,6 +26,12 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
+
+  // TODO - implement POST /cards - video 7
 
   postCard(card) {
     return fetch(`${this._baseUrl}/cards`, {

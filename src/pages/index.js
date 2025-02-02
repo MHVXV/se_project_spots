@@ -118,8 +118,6 @@ function getCardElement(data) {
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
-  // if the card is liked, set the active class on the card - video 8, 16:45
-
   cardNameEl.textContent = data.name;
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
