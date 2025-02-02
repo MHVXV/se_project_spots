@@ -127,7 +127,7 @@ function getCardElement(data) {
     cardLikeBtn.classList.add("card__like-btn_liked");
   }
 
-  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
+  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data));
   cardDeleteBtn.addEventListener("click", () =>
     handleDeleteCard(cardElement, data._id)
   );
@@ -143,8 +143,6 @@ function getCardElement(data) {
 }
 
 function handleLike(evt, data) {
-  cardLikeBtn.classList.toggle("card__like-btn_liked");
-
   const isLiked = evt.target.classList.contains("card__like-btn_liked");
   api
     .changeLikeStatus(data._id, isLiked)
