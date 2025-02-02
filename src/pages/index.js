@@ -6,6 +6,7 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { setButtonText, setDeleteButtonText } from "../utils/Helpers.js";
 
 const initialCards = [
   {
@@ -156,6 +157,8 @@ function handleLike(evt, data) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+  const cardModalSubmitButton = evt.submitter;
+  setButtonText(cardModalSubmitButton, true, "Save", "Saving...");
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -166,15 +169,18 @@ function handleEditFormSubmit(evt) {
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(cardModalSubmitButton, false, "Save", "Saving...");
+    });
 }
 
+// ensure I'm using the correct const here.
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  console.log(cardNameInput.value);
-  console.log(cardLinkInput.value);
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  // submit name and link to server. Call postCard
+  const cardModalSubmitButton = evt.submitter;
+  setButtonText(cardModalSubmitButton, true, "Save", "Saving...");
   api
     .postCard(inputValues)
     .then((card) => {
@@ -184,35 +190,45 @@ function handleAddCardSubmit(evt) {
       closeModal(cardModal);
       cardForm.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(cardModalSubmitButton, false, "Save", "Saving...");
+    });
 }
 
-// TODO - Finish avatar submission handler from video 5
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   console.log(avatarInput.value);
+  const avatarModalSubmitButton = evt.submitter;
+  setButtonText(avatarModalSubmitButton, true, "Save", "Saving...");
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
       console.log(data.avatar);
-      const avatarElement = document.querySelector(".profile__avatar"); // Adjust selector as needed
-      avatarElement.src = data.avatar; //not sure if these lines are correct
-
-      // Make this work, set the new avatar element from video 5
+      const avatarElement = document.querySelector(".profile__avatar");
+      avatarElement.src = data.avatar;
+      closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(avatarModalSubmitButton, false, "Save", "Saving...");
+    });
 }
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const deleteButton = evt.submitter;
+  setDeleteButtonText(deleteButton, true, "Delete", "Deleting...");
   api
     .deleteCard(selectedCardId)
     .then(() => {
-      cardElement.remove();
-      closeModal();
-      // TODO remove card from DOM, close the modal
+      selectedCard.remove();
+      closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setDeleteButtonText(deleteButton, false, "Delete", "Deleting...");
+    });
 }
 
 function handleDeleteCard(cardElement, cardId) {

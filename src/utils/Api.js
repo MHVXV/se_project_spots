@@ -23,7 +23,6 @@ class Api {
   // do something similar to editUserInfo
 
   getInitialCards() {
-    //is this correct?
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
@@ -36,7 +35,6 @@ class Api {
   }
 
   postCard(card) {
-    //is this correct?
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
