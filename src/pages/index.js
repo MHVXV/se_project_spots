@@ -77,7 +77,7 @@ const editModalDescriptionInput = editModal.querySelector(
 
 // Avatar form elements
 const avatarModal = document.querySelector("#avatar-modal");
-const avatarForm = avatarModal.querySelector["#edit-avatar-form"];
+const avatarForm = avatarModal.querySelector("#edit-avatar-form");
 const avatarModalCloseButton = avatarModal.querySelector(".modal__close-btn");
 const avatarModalSubmitButton = avatarModal.querySelector(".modal__submit-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
@@ -117,16 +117,19 @@ function getCardElement(data) {
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
+  // if the card is liked, set the active class on the card - video 8, 16:45
+
   cardNameEl.textContent = data.name;
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
 
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_liked");
-  });
+  if (data.isLiked) {
+    cardLikeBtn.classList.add("card__like-btn_liked");
+  }
 
-  cardDeleteBtn.addEventListener("click", (evt) =>
-    handleDeleteCard(cardElement, data)
+  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
+  cardDeleteBtn.addEventListener("click", () =>
+    handleDeleteCard(cardElement, data._id)
   );
 
   cardImageElement.addEventListener("click", () => {
@@ -139,6 +142,20 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function handleLike(evt, data) {
+  cardLikeBtn.classList.toggle("card__like-btn_liked");
+
+  const isLiked = evt.target.classList.contains("card__like-btn_liked");
+  api
+    .changeLikeStatus(data._id, isLiked)
+    .then(() => {
+      evt.target.classList.toggle("card__like-btn_liked");
+    })
+    .catch((err) => {
+      console.error("Error liking the card:", err);
+    });
+}
+
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   api
@@ -147,7 +164,6 @@ function handleEditFormSubmit(evt) {
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      // (DONE) - Use data argument instead of the input values
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
@@ -160,11 +176,17 @@ function handleAddCardSubmit(evt) {
   console.log(cardNameInput.value);
   console.log(cardLinkInput.value);
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardEl = getCardElement(inputValues);
-  cardsList.prepend(cardEl);
-  disableButton(cardModalSubmitButton, settings);
-  closeModal(cardModal);
-  cardForm.reset();
+  // submit name and link to server. Call postCard
+  api
+    .postCard(inputValues)
+    .then((card) => {
+      const cardEl = getCardElement(card);
+      cardsList.prepend(cardEl);
+      disableButton(cardModalSubmitButton, settings);
+      closeModal(cardModal);
+      cardForm.reset();
+    })
+    .catch(console.error);
 }
 
 // TODO - Finish avatar submission handler from video 5
@@ -175,6 +197,9 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
       console.log(data.avatar);
+      const avatarElement = document.querySelector(".profile__avatar"); // Adjust selector as needed
+      avatarElement.src = data.avatar; //not sure if these lines are correct
+
       // Make this work, set the new avatar element from video 5
     })
     .catch(console.error);
@@ -185,6 +210,8 @@ function handleDeleteSubmit(evt) {
   api
     .deleteCard(selectedCardId)
     .then(() => {
+      cardElement.remove();
+      closeModal();
       // TODO remove card from DOM, close the modal
     })
     .catch(console.error);
