@@ -31,8 +31,6 @@ class Api {
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
 
-  // TODO - implement POST /cards - video 7
-
   postCard(card) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",

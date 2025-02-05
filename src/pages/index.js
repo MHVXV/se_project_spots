@@ -173,7 +173,6 @@ function handleEditFormSubmit(evt) {
     });
 }
 
-// ensure I'm using the correct const here.
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
@@ -206,7 +205,7 @@ function handleAvatarSubmit(evt) {
       const avatarElement = document.querySelector(".profile__avatar");
       avatarElement.src = data.avatar;
       closeModal(avatarModal);
-      avatarForm.reset(); //Is this working properly? Why doesn't the modal close when I hit save?
+      avatarForm.reset();
     })
     .catch(console.error)
     .finally(() => {
@@ -280,7 +279,6 @@ function closeOverlay(evt) {
   }
 }
 
-// TODO - set up the close button listener from video 5
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });

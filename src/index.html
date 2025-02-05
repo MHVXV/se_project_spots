@@ -105,7 +105,12 @@
                 currently using 1 character).
               </span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button
+              type="submit"
+              class="modal__submit-btn modal__submit_edits-btn"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -150,7 +155,12 @@
                 >Please fill out this field.</span
               >
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button
+              type="submit"
+              class="modal__submit-btn modal__submit_edits-btn"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -166,7 +176,6 @@
       </div>
     </div>
 
-    <!-- make everything below here match the figma. from video 5 -->
     <div class="modal" id="avatar-modal">
       <div class="modal__container">
         <button class="modal__close-btn"></button>
@@ -174,7 +183,7 @@
         <form class="modal__form" id="edit-avatar-form" novalidate>
           <label for="profile-avatar-input" class="modal__label">
             Profile picture
-            <!-- I'm supposed to update this section -->
+
             <input
               id="profile-avatar-input"
               type="text"
@@ -183,17 +192,21 @@
               placeholder="Paste the link to an image"
               required
             />
-            <!-- in between here from video 5-->
+
             <span class="modal__error" id="profile-avatar-input-error"
               >Please fill out this field.</span
             >
           </label>
-          <button type="submit" class="modal__submit-btn">Save</button>
+          <button
+            type="submit"
+            class="modal__submit-btn modal__submit_edits-btn"
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
 
-    <!-- Style the CSS based on the figma, from video 6 -->
     <div class="modal" id="delete-modal">
       <div class="modal__container">
         <button class="modal__close-btn modal__close-btn_type_outside"></button>
@@ -201,8 +214,14 @@
           Are you sure you want to delete this image?
         </h2>
         <form class="modal__form" id="delete-form" novalidate>
-          <button type="submit" class="modal__delete-btn">Delete</button>
-          <button type="button" class="modal__cancel-btn">Cancel</button>
+          <button type="submit" class="modal__submit-btn modal__delete-btn">
+            Delete
+          </button>
+          <button type="button" class="modal__submit-btn modal__cancel-btn">
+            Cancel
+          </button>
+          <!-- <button type="submit" class="modal__delete-btn">Delete</button>
+          <button type="button" class="modal__cancel-btn">Cancel</button> -->
         </form>
       </div>
     </div>

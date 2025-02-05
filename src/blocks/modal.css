@@ -188,7 +188,7 @@
   opacity: 30%;
 }
 
-.modal__submit-btn {
+.modal__submit_edits-btn {
   width: 156px;
   padding: 18px 0;
   background-color: #212121;
@@ -197,11 +197,11 @@
   cursor: pointer;
 }
 
-.modal__submit-btn:hover {
+.modal__submit_edits-btn:hover {
   opacity: 80%;
 }
 
-.modal__submit-btn_disabled {
+.modal__submit_edits-btn_disabled {
   opacity: 50%;
 }
 
