@@ -206,6 +206,7 @@ function handleAvatarSubmit(evt) {
       const avatarElement = document.querySelector(".profile__avatar");
       avatarElement.src = data.avatar;
       closeModal(avatarModal);
+      avatarForm.reset(); //Is this working properly? Why doesn't the modal close when I hit save?
     })
     .catch(console.error)
     .finally(() => {

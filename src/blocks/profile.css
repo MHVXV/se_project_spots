@@ -95,7 +95,7 @@
   content: "";
   width: 16px;
   height: 16px;
-  background-image: url(../images/pencil.svg);
+  background-image: url("../images/pencil.svg");
   background-repeat: no-repeat;
   padding-right: 8px;
   opacity: 70%;
@@ -156,10 +156,11 @@
     content: "";
   }
 
-  /* .profile__pencil-icon {
-    margin-bottom: 12px;
-    z-index: 2;
-  } */
+  .profile__pencil-icon {
+    position: absolute;
+    bottom: -12px;
+    opacity: 100%;
+  }
 
   /* TODO - finish mobile avatar button styles */
 
