@@ -7,6 +7,7 @@
 .profile__avatar-container {
   position: relative;
   margin-right: 20px;
+  height: 190px;
 }
 
 .profile__avatar-btn {
@@ -24,6 +25,8 @@
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
   cursor: pointer;
+  background-color: #212121;
+  opacity: 50%;
 }
 
 .profile__pencil-icon {
@@ -36,6 +39,7 @@
   margin-bottom: 12px;
   z-index: 2;
   color: #fff;
+  opacity: 100%;
   font-weight: 500;
 }
 
@@ -43,7 +47,6 @@
   border-radius: 8px;
   height: 190px;
   width: 190px;
-  z-index: 1;
 }
 
 .profile__column {
@@ -52,31 +55,26 @@
 }
 
 .profile__name {
-  max-width: 420px;
-  margin: 0 0 12px;
   font-size: 32px;
-  line-height: 1;
-  font-weight: 500;
   color: #212121;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }
 
 .profile__description {
-  max-width: 420px;
-  margin: 0;
   font-size: 16px;
-  line-height: 1;
-  font-weight: 500;
   color: rgba(33, 33, 33, 0.7);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
+}
+
+.profile__description,
+.profile__name {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  display: -webkit-box;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .profile__edit-btn {
@@ -159,10 +157,7 @@
   .profile__pencil-icon {
     position: absolute;
     bottom: -12px;
-    opacity: 100%;
   }
-
-  /* TODO - finish mobile avatar button styles */
 
   .profile__avatar {
     margin: 0 0 12px;
