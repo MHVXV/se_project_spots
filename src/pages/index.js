@@ -298,3 +298,5 @@ function openModal(modal) {
 }
 
 enableValidation(settings);
+
+//end code
