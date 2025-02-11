@@ -56,11 +56,15 @@ api
       cardsList.append(cardEl);
     });
 
-    document.querySelector(".profile__avatar").src = userInfo.avatar;
+    profileAvatarElement.src = userInfo.avatar;
     profileName.textContent = userInfo.name;
     profileDescription.textContent = userInfo.about;
   })
   .catch(console.error);
+
+const profileAvatarElement = document.querySelector(".profile__avatar");
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddImgButton = document.querySelector(".profile__add-btn");
@@ -103,9 +107,6 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-btn_type_preview"
 );
-
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
 
 let selectedCard, selectedCardId;
 
@@ -203,8 +204,7 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
       console.log(data.avatar);
-      const avatarElement = document.querySelector(".profile__avatar");
-      avatarElement.src = data.avatar;
+      profileAvatarElement.src = data.avatar;
       closeModal(avatarModal);
       avatarForm.reset();
     })
