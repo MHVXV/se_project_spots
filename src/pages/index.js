@@ -7,6 +7,7 @@ import {
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 import { setButtonText, setDeleteButtonText } from "../utils/Helpers.js";
+// import { renderLoading, handleSubmit } from "../utils/Utils.js";
 
 // const initialCards = [
 //   {
@@ -154,6 +155,8 @@ function handleLike(evt, data) {
       console.error("Error liking the card:", err);
     });
 }
+
+// handleSubmit(request, evt, (loadingText = "Saving..."));
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
