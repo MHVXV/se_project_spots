@@ -86,6 +86,7 @@ const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector("#edit-avatar-form");
 const avatarModalCloseButton = avatarModal.querySelector(".modal__close-btn");
 const avatarModalSubmitButton = avatarModal.querySelector(".modal__submit-btn");
+const avatarSaveButton = avatarModal.querySelector(".modal__submit_edits-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 // Delete form elements
@@ -156,8 +157,6 @@ function handleLike(evt, data) {
     });
 }
 
-// handleSubmit(request, evt, (loadingText = "Saving..."));
-
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   const cardModalSubmitButton = evt.submitter;
@@ -210,6 +209,8 @@ function handleAvatarSubmit(evt) {
       profileAvatarElement.src = data.avatar;
       closeModal(avatarModal);
       avatarForm.reset();
+      avatarSaveButton.disabled = true;
+      avatarSaveButton.classList.add("modal__submit_edits-btn_disabled");
     })
     .catch(console.error)
     .finally(() => {
