@@ -207,10 +207,9 @@ function handleAvatarSubmit(evt) {
     .then((data) => {
       console.log(data.avatar);
       profileAvatarElement.src = data.avatar;
+      disableButton(avatarModalSubmitButton, settings);
       closeModal(avatarModal);
       avatarForm.reset();
-      avatarSaveButton.disabled = true;
-      avatarSaveButton.classList.add("modal__submit_edits-btn_disabled");
     })
     .catch(console.error)
     .finally(() => {
