@@ -4,10 +4,12 @@ An image-sharing site.
 
 ## Description
 
-The purpose of this project is to ensure all elements are displayed properly on popular screen sizes.
+The updated version of this project is meant to deploy it from a server rather than a local computer.
+The original purpose of this project was to ensure all elements are displayed properly on popular screen sizes.
 
 ## Tech Stack
 
+- Webpack
 - HTML
 - CSS
 - Responsive design
