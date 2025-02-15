@@ -17,16 +17,6 @@ const setEventListeners = (formEl, settings) => {
     inputEl.addEventListener("input", function () {
       checkInputValidity(formEl, inputEl, settings);
       toggleButtonState(inputList, buttonEl, settings);
-
-      const defaultText = formEl.querySelector(`#${inputEl.id}-default-text`);
-
-      if (inputEl.value.length > 2) {
-        defaultText.classList.remove(settings.errorClass);
-      } else if (inputEl.value.trim() !== "") {
-        defaultText.classList.add(settings.errorClass);
-      } else {
-        defaultText.classList.remove(settings.errorClass);
-      }
     });
   });
 };
